@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/posts/feed.css' %}">
+{% endblock css_files %}
+
+{% block content %}
+<main>
+    <!-- Create Post Section -->
+    <div class="create-post-section">
+        <h1>Paylaş</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <textarea name="content" placeholder="Bir şeyler paylaş..."></textarea>
+            
+            <!-- Custom File Input -->
+            <div class="custom-file-input-wrapper">
+                <label for="file-upload">Resim Yükle</label>
+                <input type="file" id="file-upload" name="image" accept="image/*" onchange="previewImage(event)">
+            </div>
+            
+            <!-- Image Preview -->
+            <div id="image-preview-container" class="image-preview"></div>
+
+            <button type="submit">Gönder</button>
+        </form>
+    </div>
+
+    <!-- Recent Posts Section -->
+    <section class="recent-posts-section">
+        <h1>Son 24 Saat</h1>
+        <div class="feed-container">
+            {% if recent_posts %}
+                {% for post in recent_posts %}
+                <a href="{% url 'post_detail' post.id %}" class="post-link">
+                    <article class="post">
+                        <a href="{% url 'post_detail' post.id %}" class="post-link">
+                            <header>
+                                <h2>@{{ post.author.username }}</h2>
+                                <time datetime="{{ post.created_at }}">{{ post.created_at }}</time>
+                            </header>
+                            <p>{{ post.content|truncatechars:100 }}</p>
+                    
+                            {% if post.image %}
+                            <div class="post-images">
+                                <img src="{{ post.image.url }}" alt="Post Image" class="post-image">
+                            </div>
+                            {% endif %}
+                        </a>
+                    
+                        <footer>
+                            <form action="{% url 'like_post' post.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="like-btn">Like ({{ post.likes.count }})</button>
+                            </form>
+                    
+                            <a href="{% url 'post_detail' post.id %}#comments" class="comment-btn">Comment</a>
+                    
+                            {% if post.author == user %}
+                            <form action="{% url 'delete_post' post.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-btn">Delete</button>
+                            </form>
+                            {% endif %}
+                        </footer>
+                    </article>
+                    
+                </a>
+                {% endfor %}
+            {% else %}
+                <p>Son 24 saatte gönderi bulunamadı.</p>
+            {% endif %}
+        </div>
+    </section>
+</main>
+
+{% block js_files %}
+<script src="{% static 'js/preview.js' %}"></script>
+{% endblock js_files %}
+
+{% endblock %}

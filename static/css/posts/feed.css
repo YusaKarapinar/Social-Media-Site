@@ -1,0 +1,248 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    padding: 0;
+}
+
+main {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Create Post Section */
+.create-post-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-post-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-post-section textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.create-post-section .custom-file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.create-post-section .custom-file-input-wrapper label {
+    background: #1d9bf0;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.create-post-section .custom-file-input-wrapper label:hover {
+    background: #1985d4;
+}
+
+.create-post-section .custom-file-input-wrapper input[type="file"] {
+    display: none;
+}
+
+.create-post-section button {
+    background: #1d9bf0;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.create-post-section button:hover {
+    background: #1985d4;
+}
+
+/* Feed Container */
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Clickable Post Area */
+.post-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: background 0.3s ease;
+}
+
+.post-link:hover {
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.post {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #1d9bf0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+}
+
+.post:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.post header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.post header h2 {
+    font-size: 18px;
+    color: #1d9bf0;
+}
+
+.post header time {
+    font-size: 14px;
+    color: #666;
+}
+
+.post p {
+    margin: 10px 0;
+    color: #333;
+    text-align: left;
+}
+
+.post footer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Image Preview */
+.image-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.image-preview img, .post-images img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons */
+button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    background: #1d9bf0;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background: #1985d4;
+}
+
+button.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+button.delete-btn:hover {
+    background: #b02a37;
+}
+
+button.like-btn {
+    background: #28a745;
+    color: white;
+}
+
+button.like-btn:hover {
+    background: #218838;
+}
+
+/* No Posts Message */
+.feed-container p {
+    font-size: 16px;
+    color: #666;
+    text-align: left;
+    font-style: italic;
+}
+
+/* Sections */
+.recent-posts-section, .feed-section {
+    margin-top: 30px;
+}
+
+/* Links */
+a {
+    color: #1d9bf0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Post Interaction */
+.interaction-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.interaction-icons i {
+    font-size: 18px;
+    color: #1d9bf0;
+    cursor: pointer;
+}
+
+.interaction-icons i:hover {
+    color: #1985d4;
+}

@@ -1,0 +1,85 @@
+/* Logout Butonu Stili */
+.navbar .nav-link.btn-danger {
+    background-color: #e74c3c !important;  /* Daha modern kırmızı */
+    color: white !important;              
+    border: none !important;              
+    padding: 10px 20px !important;        
+    border-radius: 8px !important;        /* Daha yumuşak köşeler */
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;     /* Geçiş efekti */
+}
+
+.navbar .nav-link.btn-danger:hover {
+    background-color: #c0392b !important; /* Daha koyu kırmızı */
+    transform: scale(1.05);               /* Hover büyüme efekti */
+    color: white !important;
+}
+
+/* Genel Buton Ayarları */
+.btn {
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Sidebar Link Ayarları */
+.sidebar a {
+    color: #333 !important;               /* Daha belirgin koyu gri */
+    text-decoration: none !important;
+    font-size: 18px !important;
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar a:hover {
+    background-color: #3498db !important; /* Hover arka plan rengi */
+    color: white !important;
+    border-radius: 8px;
+}
+
+/* Sidebar Başlık */
+.sidebar h3 {
+    color: #2c3e50;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Sidebar Genel Ayarlar */
+.sidebar {
+    background: #ecf0f1 !important;       /* Hafif gri arka plan */
+    padding: 20px;
+    min-height: 100vh;
+    width: 250px;
+}
+
+/* Ana İçerik Stili */
+.content {
+    background: #f8f9fa;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+p {
+    color: #7f8c8d;
+    font-size: 18px;
+    line-height: 1.6;
+}

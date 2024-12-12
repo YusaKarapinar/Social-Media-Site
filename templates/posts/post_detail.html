@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/posts/post_detail.css' %}">
+{% endblock css_files %}
+
+{% block content %}
+<main>
+    <article class="post">
+        <header>
+            <h2>@{{ post.author.username }}</h2>
+            <time datetime="{{ post.created_at }}">{{ post.created_at }}</time>
+        </header>
+        <p>{{ post.content }}</p>
+
+        {% if post.image %}
+        <div class="post-images">
+            <img src="{{ post.image.url }}" alt="Post Image" class="post-image">
+        </div>
+        {% endif %}
+
+        <section class="comments">
+            <h3>Comments</h3>
+            {% for comment in comments %}
+            <div class="comment">
+                <strong>{{ comment.author.username }}</strong> - {{ comment.created_at }}
+                <p>{{ comment.content }}</p>
+            </div>
+            {% empty %}
+            <p>No comments yet.</p>
+            {% endfor %}
+        </section>
+
+        <section class="add-comment">
+            <h3>Add a Comment</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </article>
+</main>
+{% endblock %}
