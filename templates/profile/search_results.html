@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <h1>Arama Sonuçları</h1>
+    {% if results %}
+        <ul>
+            {% for user in results %}
+                <li>
+                    <a href="{% url 'profile_page' user.username %}">@{{ user.username }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Kullanıcı bulunamadı.</p>
+    {% endif %}
+</main>
+{% endblock %}

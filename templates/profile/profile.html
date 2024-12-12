@@ -1,10 +1,42 @@
-{% extends 'base.html' %}
+    {% extends "base.html" %}
+    {% load static %}
 
-{% block page_title %}Profile{% endblock page_title %}
+    {% block css_files %}
+    <link rel="stylesheet" href="{% static 'css/profile/profile.css' %}">
+    {% endblock css_files %}
 
-{% block content %}
-<div class="container">
-    <h1>{{ request.user.username }}'s Profile</h1>
-    <p>Welcome to your profile page.</p>
-</div>
-{% endblock content %}
+    {% block content %}
+    <main>
+        <div class="search-bar">
+            <form method="GET" action="{% url 'search_user' %}">
+                <input type="text" name="query" placeholder="Kullanıcı ara...">
+                <button type="submit">Ara</button>
+            </form>
+        </div>
+
+        <div class="profile-container">
+            <div class="profile-header">
+                <img 
+        src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}/media/profile_pics/default.jpg{% endif %}" 
+        alt="Profil Resmi" 
+        class="profile-picture"
+    >
+                <h2>{{ user_profile.username }}</h2>
+                <p class="bio">{{ user_profile.bio }}</p>
+                <p><strong>Katılma Tarihi:</strong> {{ user_profile.date_joined }}</p>
+            </div>
+
+            <h3>Gönderiler</h3>
+            <div class="posts-container">
+                {% for post in posts %}
+                <div class="post-card">
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.content|truncatechars:150 }}</p>
+                </div>
+                {% empty %}
+                <p>Henüz gönderi yok.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    {% endblock %}

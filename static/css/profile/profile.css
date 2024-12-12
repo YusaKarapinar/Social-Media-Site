@@ -1,0 +1,102 @@
+/* Global Styles */
+body {
+    background-color: #f0f2f5;
+    font-family: Arial, sans-serif;
+}
+
+/* Search Bar */
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar form {
+    display: inline-flex;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-bar button {
+    background: #1d9bf0;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background: #1985d4;
+}
+/* Profile Styles */
+.profile-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Maksimum genişlik belirle */
+    margin: 0 auto; /* Ortalamak için */
+    overflow: hidden; /* Taşmaları engelle */
+    word-wrap: break-word; /* Uzun metinlerde taşmayı engelle */
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px; /* Daha fazla boşluk ekle */
+}
+
+.profile-picture {
+    width: 120px; /* Sabit genişlik */
+    height: 120px; /* Sabit yükseklik */
+    border-radius: 50%; /* Yuvarlak görünüm */
+    object-fit: cover; /* Resmi düzgün şekilde kes */
+    margin: 0 auto 20px; /* Ortala ve alt boşluk ekle */
+    display: block; /* Blok seviyesi */
+    border: 3px solid #ddd; /* Daha belirgin kenarlık */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Hafif gölge */
+}
+
+.profile-header h2 {
+    font-size: 22px;
+    color: #333;
+    margin: 10px 0; /* Üst ve alt boşluk */
+    overflow-wrap: break-word; /* Taşmayı önlemek için */
+}
+
+.profile-header .bio {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic; /* Hafif eğik yazı */
+    overflow-wrap: break-word; /* Taşmayı önlemek için */
+}
+
+/* Posts Section */
+.posts-container {
+    margin-top: 30px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.post-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-card h4 {
+    color: #333;
+    font-size: 18px;
+}
+
+.post-card p {
+    color: #555;
+    margin-top: 10px;
+}

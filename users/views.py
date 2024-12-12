@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm
+from .models import CustomUser
+from django.contrib.auth.decorators import login_required
 
 # Kayıt Sayfası
 def register_view(request):
@@ -30,10 +32,23 @@ def login_view(request):
 # Çıkış İşlemi
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('users/login')
 
 from django.shortcuts import render
 
-# Ana Sayfa Görünümü
-def home_view(request):
-    return render(request, 'home.html')
+
+# Profil Sayfası Görünümü
+@login_required(login_url='/login/')
+def profile_page(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    context = {
+        "user_profile": user
+    }
+    return render(request, 'profile/profile.html', context)
+
+# Kullanıcı Arama
+@login_required(login_url='/login/')
+def search_user(request):
+    query = request.GET.get('query', '')
+    results = CustomUser.objects.filter(username__icontains=query)
+    return render(request, 'profile/search_results.html', {'results': results})

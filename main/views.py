@@ -7,10 +7,6 @@ from .forms import CustomUserCreationForm
 from posts.models import Post
 from posts.forms import PostForm
 
-@login_required(login_url='/login/')
-def profile_page(request):
-    return render(request, 'profile/profile.html')
-
 
 
 
