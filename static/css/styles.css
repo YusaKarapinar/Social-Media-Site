@@ -83,3 +83,12 @@ p {
     font-size: 18px;
     line-height: 1.6;
 }
+/* Kullanıcı Profil Resmi Ayarları */
+.user-profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    margin-right: 8px;
+}

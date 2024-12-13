@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/profile/edit_profile.css' %}">
+{% endblock css_files %}
+
+
+
+{% block content %}
+<main>
+    <h1>Profili Düzenle</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.username }}
+        {{ form.email }}
+        {{ form.bio }}
+        <div class="custom-file-input-wrapper">
+            <label for="file-upload">Resim Yükle</label>
+            <input type="file" id="file-upload" name="profile_picture" accept="image/*">
+        </div>
+        <button type="submit" class="btn">Kaydet</button>
+        
+    </form>
+</main>
+{% endblock %}

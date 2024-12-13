@@ -11,3 +11,8 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'password']
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'bio', 'profile_picture']

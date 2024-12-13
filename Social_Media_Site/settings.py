@@ -149,4 +149,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Oturum açma ve yönlendirme ayarları
 LOGIN_URL = '/login/'  # Oturum açma sayfası URL'si
 LOGIN_REDIRECT_URL = '/feed/'  # Giriş sonrası yönlendirme
-LOGOUT_REDIRECT_URL = '/login/'  # Çıkış sonrası yönlendirme
+LOGOUT_REDIRECT_URL = '/'

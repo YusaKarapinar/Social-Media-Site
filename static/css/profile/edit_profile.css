@@ -1,0 +1,101 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #f0f2f5, #e9ebee);
+}
+
+/* Main Container */
+main {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input Fields */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+form input:focus, 
+form textarea:focus {
+    border: 1px solid #1985d4;
+}
+
+/* Custom File Input */
+.custom-file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-file-input-wrapper label {
+    background: #1985d4;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.custom-file-input-wrapper label:hover {
+    background: #156caa;
+}
+
+/* Hide Default File Input */
+.custom-file-input-wrapper input[type="file"] {
+    display: none;
+}
+
+/* Submit Button */
+form button {
+    background: #1985d4;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background: #156caa;
+    transform: scale(1.05);
+}

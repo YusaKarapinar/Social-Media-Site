@@ -1,19 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/profile/search_results.css' %}">
+{% endblock css_files %}
+
 {% block content %}
 <main>
     <h1>Arama Sonuçları</h1>
-    {% if results %}
-        <ul>
+    <div class="results-container">
+        {% if results %}
             {% for user in results %}
-                <li>
-                    <a href="{% url 'profile_page' user.username %}">@{{ user.username }}</a>
-                </li>
+            <div class="user-card">
+                <img 
+                    src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}{% static 'images/profile_pics/default.jpg' %}{% endif %}" 
+                    alt="@{{ user.username }}" 
+                    class="profile-picture"
+                />
+                <a href="{% url 'profile_page' user.username %}" class="username">
+                    @{{ user.username }}
+                </a>
+            </div>
             {% endfor %}
-        </ul>
-    {% else %}
-        <p>Kullanıcı bulunamadı.</p>
-    {% endif %}
+        {% else %}
+            <p class="no-results">Kullanıcı bulunamadı.</p>
+        {% endif %}
+    </div>
 </main>
 {% endblock %}

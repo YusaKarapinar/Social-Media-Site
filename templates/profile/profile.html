@@ -1,42 +1,99 @@
-    {% extends "base.html" %}
-    {% load static %}
+{% extends "base.html" %}
+{% load static %}
 
-    {% block css_files %}
-    <link rel="stylesheet" href="{% static 'css/profile/profile.css' %}">
-    {% endblock css_files %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'css/profile/profile.css' %}">
+{% endblock css_files %}
 
-    {% block content %}
-    <main>
-        <div class="search-bar">
-            <form method="GET" action="{% url 'search_user' %}">
-                <input type="text" name="query" placeholder="Kullanıcı ara...">
-                <button type="submit">Ara</button>
-            </form>
-        </div>
+{% block content %}
+<main>
+    <!-- Arama Çubuğu -->
+    <div class="search-bar">
+        <form method="GET" action="{% url 'search_user' %}">
+            <input type="text" name="query" placeholder="Kullanıcı ara...">
+            <button type="submit">Ara</button>
+        </form>
+    </div>
 
-        <div class="profile-container">
-            <div class="profile-header">
-                <img 
-        src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}/media/profile_pics/default.jpg{% endif %}" 
-        alt="Profil Resmi" 
-        class="profile-picture"
-    >
-                <h2>{{ user_profile.username }}</h2>
-                <p class="bio">{{ user_profile.bio }}</p>
-                <p><strong>Katılma Tarihi:</strong> {{ user_profile.date_joined }}</p>
-            </div>
+    <!-- Profil Bölümü -->
+    <div class="profile-container">
+        <!-- Profil Başlığı -->
+        <div class="profile-header">
+            <img 
+    src="{% if user_profile.profile_picture and user_profile.profile_picture.url %}{{ user_profile.profile_picture.url }}{% else %}{% static 'images/profile_pics/default.jpg' %}{% endif %}" 
+    alt="Profil Resmi" 
+    class="profile-picture"
+/>
+            <h2>{{ user_profile.username }}</h2>
+            <p class="bio">{{ user_profile.bio|default:"Biyografi eklenmemiş." }}</p>
+            <p><strong>Katılma Tarihi:</strong> {{ user_profile.date_joined|date:"d M Y" }}</p>
 
-            <h3>Gönderiler</h3>
-            <div class="posts-container">
-                {% for post in posts %}
-                <div class="post-card">
-                    <h4>{{ post.title }}</h4>
-                    <p>{{ post.content|truncatechars:150 }}</p>
+            <!-- Profil İstatistikleri -->
+            <div class="profile-stats">
+                <div class="stat">
+                    <strong>{{ posts.count }}</strong>
+                    <span>Gönderiler</span>
                 </div>
-                {% empty %}
-                <p>Henüz gönderi yok.</p>
-                {% endfor %}
+                <div class="stat">
+                    <strong>{{ comments.count }}</strong>
+                    <span>Yorumlar</span>
+                </div>
+                <div class="stat">
+                    <strong>{{ followers_count }}</strong>
+                    <span>Takipçiler</span>
+                </div>
+                <div class="stat">
+                    <strong>{{ following_count }}</strong>
+                    <span>Takip Edilen</span>
+                </div>
             </div>
+
+            <!-- Takip Butonları -->
+            {% if user != user_profile %}
+                {% if user in user_profile.followers.all %}
+                    <a href="{% url 'unfollow_user' user_profile.username %}" class="btn">Takipten Çık</a>
+                {% else %}
+                    <a href="{% url 'follow_user' user_profile.username %}" class="btn">Takip Et</a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'edit_profile' %}" class="edit-profile-btn">Profili Düzenle</a>
+            {% endif %}
         </div>
-    </main>
-    {% endblock %}
+
+        <!-- Gönderiler Bölümü -->
+        <h3>Gönderiler</h3>
+        <div class="posts-container">
+            {% for post in posts %}
+            <div class="post-card">
+                <a href="{% url 'post_detail' post.id %}">
+                    <h4>{{ post.title }}</h4>
+
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="Post Resmi" class="post-image">
+                    {% endif %}
+                    <p>{{ post.content|truncatechars:150 }}</p>
+                </a>
+
+                <!-- Gönderi Bilgileri -->
+                <div class="post-info">
+                    <p><strong>{{ post.likes.count }}</strong> Beğeni</p>
+                    <p><strong>{{ post.comments.count }}</strong> Yorum</p>
+                </div>
+
+                <!-- Butonlar -->
+                <div class="post-actions">
+                    <a href="{% url 'like_post' post.id %}" class="like-btn">Beğen</a>
+                    <a href="{% url 'post_detail' post.id %}#comments" class="comment-btn">Yorum Yap</a>
+
+                    {% if user == post.author %}
+                        <a href="{% url 'delete_post' post.id %}" class="delete-btn">Sil</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p>Henüz gönderi yok.</p>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}

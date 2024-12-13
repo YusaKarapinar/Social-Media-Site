@@ -198,6 +198,23 @@ button.delete-btn:hover {
     background: #b02a37;
 }
 
+button.comment-btn {
+    background: #1985d4;   /* Mavi */
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button.comment-btn:hover {
+    background: #156caa;  /* Daha koyu mavi */
+}
+
+
 button.like-btn {
     background: #28a745;
     color: white;
@@ -245,4 +262,30 @@ a:hover {
 
 .interaction-icons i:hover {
     color: #1985d4;
+}
+/* Post Header Stil Ayarları */
+.post-author-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.author-profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.post header h2 {
+    font-size: 18px;
+    color: #1d9bf0;
+    margin: 0;
+}
+
+.post header time {
+    font-size: 14px;
+    color: #666;
 }

@@ -56,7 +56,7 @@ def delete_post(request, post_id):
     post.delete()
     return redirect("feed_page")
 
-
+@login_required
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     comments = post.comments.all()
